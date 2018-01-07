@@ -15,6 +15,11 @@ DIGIT = "A 2 3 4 5 6 7 8 9 10 J Q K".split()
 print(KIND)
 print(DIGIT)
 
+CARDS = []
+for i in range(52):
+    CARDS += [KIND[i // 13] + DIGIT[i % 13]]
+CARDS += ["xk", "DK"]
+print(CARDS)
 
 def randomSelect(begin, end, number):
     problems = list(range(begin, end + 1))
@@ -25,7 +30,7 @@ def randomSelect(begin, end, number):
 def pretty(arr):
     str = ""
     for i in range(4):
-        str += "[%s%2s]" % (KIND[arr[i] // 13], DIGIT[arr[i] % 13])
+        str += CARDS[arr[i]]
     return str
 
 
@@ -46,12 +51,12 @@ def getPrize(key, user):
     return 0
 
 
-KEY = randomSelect(0, 51, 4)
+KEY = randomSelect(0, 53, 4)
 print(KEY)
 print(pretty(KEY))
 
 prize = [0] * 5
-total = 10000000
+total = 1000000
 for i in range(total):
     user = randomSelect(1, 52, 4)
     #    print(pretty(user))
