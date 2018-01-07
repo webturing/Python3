@@ -10,16 +10,17 @@
 
 import random
 
-KIND = "♠ ♣ ♥ ◆".split()
-DIGIT = "A 2 3 4 5 6 7 8 9 10 J Q K".split()
-print(KIND)
-print(DIGIT)
+KIND = "♧ ♢ ♠ ♡".split()
+DIGIT = "A_ 2_ 3_ 4_ 5_ 6_ 7_ 8_ 9_ 10 J_ Q_ K_".split()
+# print(KIND)
+# print(DIGIT)
 
 CARDS = []
 for i in range(52):
     CARDS += [KIND[i // 13] + DIGIT[i % 13]]
-CARDS += ["xk", "DK"]
+CARDS += ["x王", "D王"]
 print(CARDS)
+
 
 def randomSelect(begin, end, number):
     problems = list(range(begin, end + 1))
@@ -28,13 +29,13 @@ def randomSelect(begin, end, number):
 
 
 def pretty(arr):
-    str = ""
+    s = ""
     for i in range(4):
-        str += CARDS[arr[i]]
-    return str
+        s += "[" + CARDS[arr[i]] + "] "
+    return s
 
 
-def getPrize(key, user):
+def getPrize(user, key):
     if key == user:
         return 1
     if key[0:3] in [user[0:3], user[1:4]] or key[1:4] in [user[0:3], user[1:4]]:
@@ -52,8 +53,7 @@ def getPrize(key, user):
 
 
 KEY = randomSelect(0, 53, 4)
-print(KEY)
-print(pretty(KEY))
+print("*" * 8 + pretty(KEY) + "*" * 8)
 
 prize = [0] * 5
 total = 1000000
@@ -62,8 +62,8 @@ for i in range(total):
     #    print(pretty(user))
     pr = getPrize(KEY, user)
     prize[pr] += 1
-    if pr in [1]:
-        print(pretty(user), pr)
+    if pr in [1, 2]:
+        print("%07d" % i, pretty(user), pr)
 total -= prize[4]
 print(prize[1:])
 print("TOTAL", total)
