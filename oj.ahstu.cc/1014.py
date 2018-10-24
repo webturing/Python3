@@ -1,1 +1,9 @@
-print('1/40,3/40,7/40,9/40,11/40,13/40,17/40,19/40,21/40,23/40,27/40,29/40,31/40,33/40,37/40,39/40,')
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+
+
+n = 40
+for e in list(filter(lambda x: gcd(x, n) == 1, range(1, n))):
+    print('%d/%d' % (e, n), end=',')
