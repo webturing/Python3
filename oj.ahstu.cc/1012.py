@@ -1,1 +1,7 @@
-print(1993)
+a = range(2000)
+a = list(filter(lambda x: x % 8 == 1, a))
+a = list(filter(lambda x: x // 8 % 8 == 1, a))
+a = list(filter(lambda x: x // 64 % 8 == 7, a))
+a = list(filter(lambda x: x % 17 == 4, a))
+a = list(filter(lambda x: x // 17 % 17 == 15, a))
+print(a[0])
